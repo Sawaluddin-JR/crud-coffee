@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Show All Data Sales</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div class="container mx-3">
+      <h1>SHOW SALES</h1>
+      <a th:href="@{add-sales}" class="btn btn-primary btn-sm mb-3"> Add </a>
+    </div>
+    <div class="table-responsive">
+      <table
+        class="table table-striped table-hover table-bordered w-75 mb-4 mx-4 mt-1"
+      >
+        <thead class="table-dark text-center">
+          <tr>
+            <th scope="col">Code Sales</th>
+            <th scope="col">Date</th>
+            <th scope="col">Id Coffee</th>
+            <th scope="col">Id Barista</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="a : ${sales}">
+            <td th:text="${a.id}" class="text-center"></td>
+            <td th:text="${a.date}"></td>
+            <td th:text="${a.codeCoffee.code}"></td>
+            <td th:text="${a.idBarista.id}"></td>
+            <td class="d-flex flex-row justify-content-evenly">
+              <a th:href="@{up-sales/{id}(id=${a.id})}" class="btn btn-warning"
+                >Edit</a
+              >
+              <a th:href="@{del-sales/{id}(id=${a.id})}" class="btn btn-danger"
+                >Delete</a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
